@@ -134,7 +134,7 @@ void SoundSM () {
 	    break;
 
 	case pause :
-	    if (button) {
+	    if (button == 0x04) {
 		SoundState = play;
 	        break;
 	    }
