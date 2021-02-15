@@ -191,6 +191,7 @@ int main(void) {
     sound = 0x00;
     ThreeState = INIT;
     BlinkingState = on;
+    SoundState = wait;
     TimerSet(1);
     TimerOn();   
 
