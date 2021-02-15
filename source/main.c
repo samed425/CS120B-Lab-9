@@ -57,7 +57,9 @@ unsigned char threeLEDs;
 unsigned char blinkingLED;
 unsigned char sound;
 unsigned char temp;
-unsigned char button;
+unsigned char button0;
+unsigned char button1;
+unsigned char button2;
 unsigned long frequency;
 
 void ThreeLEDsSM() {
@@ -132,7 +134,7 @@ void BlinkingLEDSM () {
 void SoundSM () {
     switch (SoundState) {
 	case wait :
-	    if (button == 0x04) {
+	    if (button2 == 0x04) {
 		SoundState = play;
 		break;
 	    }
@@ -140,7 +142,7 @@ void SoundSM () {
 	    break;
 	    
 	case play :
-	    if (button == 0x04) {
+	    if (button2 == 0x04) {
 		SoundState = pause;
 		break;
 	    }
@@ -148,7 +150,7 @@ void SoundSM () {
 	    break;
 
 	case pause :
-	    if (button == 0x04) {
+	    if (button2 == 0x04) {
 		SoundState = play;
 	        break;
 	    }
@@ -182,12 +184,12 @@ void SoundSM () {
 void FrequencySM () {
     switch (FrequencyState) {
 	case wait_freq :
-	    if (button == 0x01) {
+	    if (button0 == 0x01) {
 		FrequencyState = raise;
 		break;
 	    }
 
-	    else if (button == 0x02) {
+	    else if (button1 == 0x02) {
 		FrequencyState = lower;
 		break;
 	    }
@@ -203,7 +205,7 @@ void FrequencySM () {
 	    break;
 
 	case release :
-	    if (button == 0x00) {
+	    if (button0 == 0x00 && button1 == 0x00) {
 		FrequencyState = wait_freq;
 	    	break;
 	    }
@@ -253,7 +255,9 @@ int main(void) {
 
 
     while (1) {
-	button = ~PINA & 0x07;
+	button0 = ~PINA & 0x01;
+	button1 = ~PINA & 0x02;
+	button2 = ~PINA & 0x04;
 	if (TLSM_et >= 300) {
 	    ThreeLEDsSM();
 	    TLSM_et = 0;
