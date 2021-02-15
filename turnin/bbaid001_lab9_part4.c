@@ -218,13 +218,11 @@ void FrequencySM () {
 	    break;
 	
 	case raise :
-	    if (frequency > 1) {
-		frequency--;
-	    }
+	    frequency = frequency - 1;
 	    break;
 
 	case lower :
-	    frequency++;
+	    frequency = frequency + 1;
 	    break;
 
 	case release :
@@ -243,7 +241,7 @@ int main(void) {
     unsigned long TLSM_et = 0;
     unsigned long BLSM_et = 0;
     unsigned long SSM_et = 0;
-    frequency = 10;
+    frequency = 2;
     threeLEDs = 0x00;
     blinkingLED = 0x00;
     sound = 0x00;
