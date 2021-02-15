@@ -241,7 +241,7 @@ int main(void) {
     unsigned long TLSM_et = 0;
     unsigned long BLSM_et = 0;
     unsigned long SSM_et = 0;
-    frequency = 2;
+    frequency = 10;
     threeLEDs = 0x00;
     blinkingLED = 0x00;
     sound = 0x00;
