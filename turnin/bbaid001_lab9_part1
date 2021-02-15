@@ -106,6 +106,7 @@ void BlinkingLEDSM () {
 	    break;
 
 	default :
+	    BlinkingState = on;
 	    break;
     }
     switch (BlinkingState) {
@@ -114,7 +115,7 @@ void BlinkingLEDSM () {
 	    break;
 
 	case off :
-	    blinkingLED = 0x08;
+	    blinkingLED = 0x00;
 	    break;
 
 	default :
