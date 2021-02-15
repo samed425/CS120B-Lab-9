@@ -50,7 +50,7 @@ void TimerSet(unsigned long M){
 
 enum ThreeStates { INIT, s0, s1, s2 } ThreeState;
 enum BlinkingStates { on, off } BlinkingState;
-enum SoundStates { play, pause } SoundState;
+enum SoundStates { wait, play, pause } SoundState;
 
 unsigned char threeLEDs;
 unsigned char blinkingLED;
@@ -129,16 +129,28 @@ void BlinkingLEDSM () {
 
 void SoundSM () {
     switch (SoundState) {
+	case wait :
+	    if (button) {
+		SoundState = play;
+		break;
+	    }
+	    SoundState = wait;
+	    break;
+	    
 	case play :
-	    SoundState = pause;
+	    if (button) {
+		SoundState = pause;
+		break;
+	    }
+	    SoundState = wait;
 	    break;
 
 	case pause :
-	    if (button == 0x04) {
+	    if (button) {
 		SoundState = play;
 	        break;
 	    }
-	    SoundState = pause;
+	    SoundState = wait;
 	    break;
 
 	default :
@@ -147,6 +159,10 @@ void SoundSM () {
     }
 
     switch (SoundState) {
+	case wait :
+	    sound = 0x00;
+	    break;
+
 	case play :
 	    sound = 0x10;
 	    break;   
