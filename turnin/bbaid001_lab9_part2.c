@@ -137,7 +137,7 @@ int main(void) {
     blinkingLED = 0x00;
     ThreeState = INIT;
     BlinkingState = on;
-    TimerSet(1000);
+    TimerSet(100);
     TimerOn();   
 
 
