@@ -130,7 +130,7 @@ void BlinkingLEDSM () {
 void SoundSM () {
     switch (SoundState) {
 	case wait :
-	    if (button) {
+	    if (button == 0x04) {
 		SoundState = play;
 		break;
 	    }
@@ -138,7 +138,7 @@ void SoundSM () {
 	    break;
 	    
 	case play :
-	    if (button) {
+	    if (button == 0x04) {
 		SoundState = pause;
 		break;
 	    }
@@ -146,7 +146,7 @@ void SoundSM () {
 	    break;
 
 	case pause :
-	    if (button) {
+	    if (button == 0x04) {
 		SoundState = play;
 	        break;
 	    }
