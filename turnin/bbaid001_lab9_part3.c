@@ -154,6 +154,7 @@ void SoundSM () {
 	    break;
 
 	default :
+	    SoundState = wait;
 	    break;
 	    
     }
@@ -182,6 +183,7 @@ void CombineLEDsSM () {
 
 int main(void) {
     DDRB = 0xFF; PORTB = 0x00;
+    DDRA = 0x00; PORTA = 0xFF;
     const unsigned long synchPeriod = 1;
     unsigned long TLSM_et = 0;
     unsigned long BLSM_et = 0;
