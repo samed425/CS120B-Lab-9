@@ -180,7 +180,7 @@ int main(void) {
 
 
     while (1) {
-	button = ~(PINA & 0x04);
+	button = ~PINA & 0x04;
 	if (TLSM_et >= 300) {
 	    ThreeLEDsSM();
 	    TLSM_et = 0;
