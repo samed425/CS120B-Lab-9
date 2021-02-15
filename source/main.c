@@ -208,7 +208,7 @@ int main(void) {
 	    BlinkingLEDSM();
 	    BLSM_et = 0;
 	}
-	if (SSM_et >= 2) {
+	if (SSM_et >= 10) {
 	    SoundSM();
 	    SSM_et = 0;
         }
