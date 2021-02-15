@@ -130,14 +130,14 @@ void CombineLEDsSM () {
 
 int main(void) {
     DDRB = 0xFF; PORTB = 0x00;
-    const unsigned long synchPeriod = 100;
+    const unsigned long synchPeriod = 1;
     unsigned long TLSM_et = 0;
     unsigned long BLSM_et = 0;
     threeLEDs = 0x00;
     blinkingLED = 0x00;
     ThreeState = INIT;
     BlinkingState = on;
-    TimerSet(100);
+    TimerSet(1);
     TimerOn();   
 
 
