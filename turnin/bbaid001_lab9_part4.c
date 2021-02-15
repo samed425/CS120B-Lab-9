@@ -186,14 +186,14 @@ void FrequencySM () {
 	case wait_freq :
 	    if (button0 == 0x01) {
 		FrequencyState = raise;
-		break;
 	    }
 
 	    else if (button1 == 0x02) {
 		FrequencyState = lower;
-		break;
 	    }
- 	    FrequencyState = wait_freq;
+	    else {
+		FrequencyState = wait_freq;
+	    }
  	    break;
 
 	case raise :
@@ -218,7 +218,9 @@ void FrequencySM () {
 	    break;
 	
 	case raise :
-	    frequency = frequency - 1;
+	    if (frequency > 1) {
+	    	frequency = frequency - 1;
+	    }
 	    break;
 
 	case lower :
@@ -268,6 +270,7 @@ int main(void) {
 	    SoundSM();
 	    SSM_et = 0;
         }
+	FrequencySM();	
 	CombineLEDsSM();
 	PORTB = temp;
 	while (!TimerFlag);
